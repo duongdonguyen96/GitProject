@@ -1,0 +1,167 @@
+body {
+    width: 1000px;
+    margin: 0px;
+    padding: 0px;
+    margin: 0px auto;
+    background: url(./image/img_chess.jpg);
+    background-size: cover;
+}
+
+body #clock {
+    color: aliceblue;
+    font-size: 30px;
+    margin-top: 600px;
+    margin-left: -200px;
+}
+
+#label18 {
+    margin-left: -265px;
+    margin-top: 0px;
+}
+
+#text_run {
+    color: red;
+    font-size: 20px;
+}
+
+.login-box {
+    width: 320px;
+    height: 420px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    background: rgba(100, 90, 90, 0.1);
+    margin-top: -250px;
+    margin-left: -550px;
+    text-align: left;
+    animation: deleyForm 3s forwards;
+}
+
+@-webkit-keyframes deleyForm {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.login-box h1 {
+    color: GoldenRod;
+    text-align: center;
+}
+
+.login-box p {
+    margin-left: 20px;
+    color: rgb(218, 218, 218);
+}
+
+.login-box input[type="text"],
+input[type="password"] {
+    /* none ô nhập input */
+    border: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    color: rgb(218, 218, 218);
+    font-size: 16px;
+    margin-left: 20px;
+}
+
+.login-box input[type="submit"] {
+    border: none;
+    outline: none;
+    background: transparent;
+    border-radius: 20px;
+    font-size: 18px;
+    background: GoldenRod;
+    height: 30px;
+    color: rgb(218, 218, 218);
+    margin-top: 20px;
+    line-height: 30px;
+    margin-left: 20px;
+}
+
+.login-box input[type="submit"]:hover {
+    background: rgb(182, 182, 40);
+}
+
+.login-box a {
+    margin-left: 50px;
+    color: rgb(218, 218, 218);
+    text-decoration: none;
+}
+
+.login-box a:hover {
+    color: GoldenRod;
+}
+
+
+/* .login-box #login #login_fb {
+    height: 30px;
+    margin-top: 17px;
+    margin-left: 62px; */
+
+
+/* } */
+
+#login #fb {
+    width: 150px;
+    height: 25px;
+    margin-top: 25px;
+    margin-left: 70px;
+}
+
+#login #fb img {
+    margin-top: -3px;
+    margin-left: -7px;
+}
+
+#down_load {
+    margin-left: 1100px;
+    margin-top: -350px;
+}
+
+#down_load #image1 {
+    margin-top: 85px;
+}
+
+#down_load #image2 {
+    margin-top: -130px;
+    margin-left: -58px;
+    transition: 0.3s;
+}
+
+#down_load #image2:hover {
+    transform: rotate(2turn);
+}
+
+#down_load #image1:hover {
+    transform: scale(1.2);
+}
+
+#down_load #icon_cute {
+    margin-left: 90px;
+}
+
+#down_load #icon_cute img {
+    height: 60px;
+    width: 60px;
+    animation: delayImage 5s forwards;
+    opacity: 0;
+    position: relative;
+}
+
+@-webkit-keyframes delayImage {
+    from {
+        margin-left: 50px;
+    }
+    to {
+        opacity: 1;
+        margin-left: 0px;
+    }
+}
+
+#down_load #icon_cute img:hover {
+    transform: scale(0.9);
+}

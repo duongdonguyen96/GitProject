@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <link rel="stylesheet" href="login_form.css" />
+</head>
+
+<body>
+    <img id="label18" src="./image/label18.jpg" alt="label18" />
+    <marquee id="text_run" behavior="slide" direction="left" loop="100" scrollamount=" 3 " scrolldelay="3">Gà mờ Dương Đỗ Nguyên bất ngờ đánh bại vua cờ Manus Carlsen tại giải cờ vua online Chessable Masters hôm 26/7/2020</marquee>
+    <!-- <div id="icon_cute">
+      <img src="/Case-study/image/icon_1.jpg" alt="icon1" /><br />
+      <img src="../Case-study/image/icon_2.jpg" alt="icon2" /><br />
+      <img src="../Case-study/image/icon_3.jpg" alt="icon3" /><br />
+      <img src="../Case-study/image/icon_4.jpg" alt="icon4" />
+    </div> -->
+
+    <div class="login-box">
+        <h1>Đăng nhập tài khoản</h1>
+        <form action="" name="myform" id="myform">
+            <div>
+                <p>Tài khoản:</p>
+
+                <input type="text" placeholder="Nhập tài khoản" id="id" />
+            </div>
+            <div>
+                <p>Mật khẩu:</p>
+                <input type="password" placeholder="Nhập mật khẩu" id="pass" /><span><img
+              src="./image/eye_yellow.png"
+              width="15"
+              height="13"
+              alt=""
+              onclick="check_Password()"
+          /></span>
+            </div>
+            <input type="submit" name="button" value="Đăng nhập" />
+            <a href="forgot_form/forgot_form/forgot_form.html">Quên mật khẩu ?</a>
+            <div id="login">
+                <button name="button" type="button" id="fb">
+            <img
+              src="./image/fb.png"
+              alt="login_fb"
+              id="login_fb"
+              width="150px"
+              height="25px"
+            />
+          </button>
+            </div>
+        </form>
+        <div id="down_load">
+            <img id="image1" src="./image/download.png" alt="download" />
+            <img id="image2" src="./image/dowload1_down.png" alt="download1" />
+
+            <div id="icon_cute">
+                <a href=""><img src="./image/icon_1.jpg" alt="icon1" /><br /></a>
+                <a href=""><img src="./image/icon_2.jpg" alt="icon2" /><br /></a>
+                <a href="https://www.youtube.com/"><img src="./image/icon_3.jpg" alt="icon3" /><br /></a>
+                <a href=""><img src="./image/icon_4.jpg" alt="icon4" /></a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p id="clock"></p>
+    </div>
+    <script src="login_form.js"></script>
+</body>
+
+</html>

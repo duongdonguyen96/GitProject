@@ -1,0 +1,277 @@
+body {
+    font-family: Tahoma;
+    font-size: 13px;
+    width: 65.9%;
+    height: 100%;
+    margin: 0px auto;
+    background-color: rgb(12, 12, 13);
+    position: relative;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#container #menu_top {
+    height: 3.12%;
+    width: 100%;
+}
+
+#image_banner {
+    height: 16%;
+    width: 100%;
+}
+
+
+/* .banner {
+    background: url(./image/Banner-chess.png) no-repeat;
+    animation: slide 10s infinite ease-in;
+    height: 260px;
+    width: 100%;
+    background-size: 1000px 260px;
+}
+
+@keyframes slide {
+    50% {
+        background: url(./image/bannerChess1.jpg) no-repeat;
+        height: 260px;
+        width: 100%;
+        background-size: 1000px 260px;
+    }
+    100% {
+        background: url(./image/bannerChess2.jpg) no-repeat;
+        height: 260px;
+        width: 100%;
+        background-size: 1000px 260px;
+    }
+} */
+
+#main {
+    width: 100%;
+    height: 56.712%;
+}
+
+#main #left {
+    width: 70%;
+    float: left;
+    height: 100%;
+    background: rgb(37, 31, 31);
+    background-size: cover;
+    /* min-height: 400px; */
+}
+
+#main #right_top {
+    width: 29.5%;
+    height: 100%;
+    background: rgb(37, 31, 31);
+    background-size: cover;
+    /* cho 2 thẻ div right, left ngang hàng */
+    float: left;
+    /* chiều cao tối thiểu của div */
+    /* min-height: 700px; */
+}
+
+#container #footer {
+    width: 100%;
+    height: 14.73%;
+}
+
+#menu_top ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+#menu_top ul li {
+    width: 12.14%;
+    height: 100%;
+    /* bỏ unoder list, cho menu nằm ngang */
+    list-style: none;
+    display: inline-table;
+    position: relative;
+}
+
+#menu_top ul li a {
+    /* bỏ gạch chân */
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    line-height: 300%;
+    /*  */
+    color: #fff;
+    /* khoảng cách giữa các menu */
+    padding: 0px 20px 0px 20px;
+    border-right: 0.5px solid #f1f1f1;
+    text-align: center;
+}
+
+#menu_top ul li a.active {
+    background: #1949b5;
+}
+
+#menu_top ul li a:hover {
+    background: orangered;
+    transform: scale(1.12);
+}
+
+#menu_top ul li .sub_menu {
+    display: none;
+    position: absolute;
+}
+
+#menu_top ul li .sub_menu li {
+    width: 100%;
+}
+
+#menu_top ul li:hover .sub_menu {
+    display: block;
+}
+
+#main #left {
+    margin-right: 0.5%;
+}
+
+#main #left ul {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+#main #left ul li {
+    /* cho ảnh ko bị chèn */
+    clear: left;
+    /* bỏ ký hiệu list */
+    list-style: none;
+    /* viền dưới */
+    border-bottom: 1px solid rgb(54, 48, 48);
+    float: left;
+    /* khoảng cách các list */
+    margin-bottom: 0.8%;
+    height: 20%;
+}
+
+#main #left ul li img {
+    float: left;
+    width: 28.5714%;
+    /* khoảng cách ảnh và chữ  */
+    margin-right: 1.428%;
+    margin-bottom: 1.428%;
+}
+
+#main #left ul li #text_infor {
+    margin-top: 0px;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+#main #left ul li #text_infor a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#main #left ul li #text_infor a:hover {
+    color: orange;
+}
+
+#main {
+    margin-top: 0.8%;
+    color: rgb(190, 185, 178);
+}
+
+#main #right_top {
+    float: left;
+    display: block;
+    height: 100%;
+}
+
+#main #right_top h3 {
+    background: url(./image/icon_menu.png) no-repeat 0.166%;
+    background-position: 30%;
+    text-indent: 13.56%;
+    text-align: center;
+}
+
+#main #right_top ul li {
+    list-style: none;
+    border-bottom: 1px solid rgb(54, 48, 48);
+    margin-top: 0px;
+    margin-bottom: 0.1%;
+    margin-left: 0px;
+}
+
+#main #right_top ul li a {
+    text-decoration: none;
+    color: rgb(190, 185, 178);
+    line-height: 28px;
+    font-size: 12px;
+    text-align: center;
+}
+
+#main #right_top ul li a:hover {
+    color: orange;
+    /* hover */
+}
+
+#main #right_top ul li img {
+    margin-top: -23px;
+}
+
+#main #right_top ul #h5_donwn {
+    margin-top: -13px;
+}
+
+#video_manus {
+    height: auto;
+    width: 98%;
+}
+
+
+/* reponsive pc first */
+
+@media screen and (max-width: 1280px) {
+    #menu_top ul li {
+        width: 24.28%;
+    }
+    #main #left {
+        width: 100%;
+        height: 70%;
+    }
+    #main #right_top {
+        width: 100%;
+        height: 28%;
+        flex-direction: column;
+        text-align: left;
+    }
+    #main #right_top h3 {
+        display: none;
+    }
+    #main #right_top #video_manus {
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #main #right_top #video_manus {
+        max-width: 70%;
+    }
+    #main #left ul li #text_infor {
+        font-size: 130%;
+    }
+    @media screen and (max-width: 768px) {
+        #text {
+            font-size: 10px;
+        }
+        #main #left ul li #text_infor {
+            font-size: 100%;
+        }
+    }
+    @media screen and (max-width: 600px) {
+        #menu_top ul li {
+            width: 32%;
+        }
+        #main #right_top {
+            display: none;
+        }
+    }
+}

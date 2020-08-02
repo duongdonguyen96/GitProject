@@ -1,0 +1,74 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    position: relative;
+    background: rgb(237, 236, 231);
+    background-size: 150px auto;
+}
+
+#main #hello {
+    width: 5%;
+}
+
+#main #hello img {
+    height: 200px;
+    width: auto;
+    float: left;
+    animation-name: move;
+    animation-duration: 50s;
+    animation-iteration-count: infinite;
+    position: relative;
+}
+
+@keyframes move {
+    from {
+        top: 0px;
+    }
+    to {
+        top: 400px;
+    }
+}
+
+body .registration_box {
+    width: 800px;
+    height: 600px;
+    background: rgb(255, 255, 255) url(./image/Queen_King.gif) no-repeat;
+    margin: 50px auto;
+    display: flex;
+    text-align: center;
+    background-size: 200px auto;
+    background-position: 530px 400px;
+}
+
+body .registration_box #my_form {
+    margin: 100px auto;
+}
+
+body .registration_box #my_form .my_input input {
+    height: 30px;
+    width: 500px;
+    margin: 15px auto;
+}
+
+body .registration_box #my_form #my_button input {
+    height: 35px;
+    width: 150px;
+    margin-top: 30px;
+    background: rgb(232, 23, 31);
+    color: aliceblue;
+}
+
+body .registration_box #my_form .my_input p {
+    color: red;
+    font-size: 15px;
+    text-align: center;
+}
+
+#text {
+    font-size: 13px;
+    color: rgb(37, 33, 33);
+    margin-left: -161px;
+}

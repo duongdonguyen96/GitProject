@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="forgot_form.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="menu">
+            <img src="" alt="" />
+        </div>
+        <div id="main">
+            <form action="" id="myform">
+                <h2>QUÊN THÔNG TIN TÀI KHOẢN</h2>
+                <div id="user_name">
+                    <label class="check-label">
+              Tên đăng nhập
+            </label>
+                    <input id="input1" type="text" />
+                </div>
+                <div id="question">
+                    <label class="check-label"> Bạn đã quên thông tin gì? </label>
+
+                    <input type="radio" value="Quên mật khẩu" />
+                    <label class="label">
+              Quên mật khẩu
+            </label>
+                    <br />
+
+                    <input type="radio" value="Quên mật khẩu" />
+                    <label class="label">
+              Quên mật khẩu cấp 2
+            </label>
+                </div>
+                <div id="check_people">
+                    <span class="text">
+                Mã kiểm tra
+              </span>
+
+                </div>
+                <span><img src="/forgot_form/image_captcha/captcha1.png" alt="image check" width=200 height=50 id="img1"/></span>
+                <span id="fasfa-sync"><i class="fas fa-sync" onclick=convertCaptcha()></i></span>
+                <div id="down">
+                    <p>Nhập mã kiểm tra</p>
+                    <input type="text">
+                </div>
+                <div id="button_2">
+                    <button id="button2_1" onclick=exitPage()>Bỏ qua</button>
+                    <button id="button2_2">Tiếp tục</button>
+                </div>
+
+        </div>
+    </div>
+    </form>
+    </div>
+    <div id="footer"></div>
+    </div>
+    <script src="forgot_form.js"></script>
+</body>
+
+</html>

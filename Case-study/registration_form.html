@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="registrationform.css">
+</head>
+
+<body>
+    <div id="main">
+        <!-- <img id="chicken" src="../Case-study/image/chicken.gif" alt="chicken" width="150px" height="auto"> -->
+        <div id="hello">
+            <img src="./image/hello.gif" alt="hello">
+        </div>
+        <div class="registration_box">
+            <form action="" name="my_form" id="my_form">
+
+                <h1>Đăng ký tài khoản</h1>
+                <div class="my_input">
+                    <input type="text" placeholder="Tên truy cập" id="user_name" />
+                    <p id="notify_name"></p>
+                </div>
+                <div class="my_input">
+                    <input type="password" placeholder="Mật khẩu" id="pass_word" />
+                    <p id="notify_password"></p>
+                </div>
+                <div class="my_input">
+                    <input type="password" placeholder="Nhập lại mật khẩu" id="check_pass_word" />
+                    <p id="notify_checkpassword"></p>
+                </div>
+                <div class="my_input">
+                    <input type="email" placeholder="validatekhoqua@gmail.com" id="email" />
+                    <div id="text">Bạn cần sử dụng email này trong trường hợp cần đặt lại mật khẩu</div>
+                    <p id="notify_email"></p>
+
+                </div>
+                <div id="my_button">
+                    <input type="button" value="Đăng Ký Ngay" onclick="information_Validate()" />
+                    <!-- <div id="right_kingqueen">
+              <img src="./image/Queen_King.gif" alt="king and queen" height="auto" width="200px">
+            </div> -->
+                </div>
+
+                <div>
+
+                </div>
+                <script src='https://cdn.jsdelivr.net/g/lodash@4(lodash.min.js+lodash.fp.min.js)'></script>
+                <script src="registration_form.js"></script>
+</body>
+
+</html>
