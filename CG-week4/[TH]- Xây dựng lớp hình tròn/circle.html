@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Cricle {
+        constructor(radius, color) {
+          this.radius = radius;
+          this.color = color;
+        }
+        getRadius() {
+          return this.radius;
+        }
+        getColor() {
+          return this.color;
+        }
+        getArea() {
+          return this.radius * this.radius * Math.PI;
+        }
+      }
+      let x = Number(prompt("Please fill your radius 1"));
+      let cricle1 = new Cricle(x, "red");
+      let radius1 = cricle1.getRadius();
+      let area1 = cricle1.getArea();
+      let color1 = cricle1.getColor();
+      alert("radius is: " + radius1 + " ,area is: " + area1);
+      // tạo đối tượng 2
+      let y = Number(prompt("Please fill your radius 2"));
+      let cricle2 = new Cricle(y, "red");
+      let radius2 = cricle2.getRadius();
+      let area2 = cricle2.getArea();
+      let color2 = cricle2.getColor();
+      alert("radius is: " + radius2 + " ,area is: " + area2);
+    </script>
+  </body>
+</html>

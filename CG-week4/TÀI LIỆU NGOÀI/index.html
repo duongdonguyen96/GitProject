@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+        integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=="
+        crossorigin="anonymous" />
+    <style>
+        canvas {
+            width: 500px;
+            height: 500px;
+            border: solid 1px tomato;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="student-form">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name">
+        </div>
+        <div>
+            <label for="Age">Age</label>
+            <input type="text" id="age">
+        </div>
+        <div>
+            <label for="Email">Email</label>
+            <input type="text" id="email">
+        </div>
+        <button>Add Student</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="student-list">
+           
+        </tbody>
+    </table>
+
+    <script src="studentapp.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Person(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.showName = function () {
+          console.log(this.firstName + " " + this.lastName);
+        };
+      }
+
+      var psn1 = new Person("Hoang", "Pham");
+
+      // các property khai báo vào biến this có thể bị truy xuất từ bên ngoài
+      // object không còn bao đóng nữa
+      psn1.firstName = "changed";
+      console.log(psn1.firstName);
+    </script>
+  </body>
+</html>

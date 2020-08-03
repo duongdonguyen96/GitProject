@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas
+      id="myCanvas"
+      width="200"
+      height="100"
+      style="border: 1px solid #c3c3c3;"
+    >
+      Trình duyệt của bạn không hỗ trợ thẻ canvas trong HTML5.
+    </canvas>
+    <script>
+      class Rectangle {
+        constructor(length, width) {
+          this.length = length;
+          this.width = width;
+        }
+        getLength() {
+          return this.length;
+        }
+        getWidth() {
+          return this.width;
+        }
+        getArea() {
+          return this.width * this.length;
+        }
+        getPerimeter() {
+          return this.width + this.length + this.width + this.length;
+        }
+        paintReactangle() {
+          var c = document.getElementById("myCanvas");
+          var ctx = c.getContext("2d");
+          ctx.fillStyle = "#FF0000";
+          ctx.fillRect(0, 0, this.length, this.width);
+        }
+      }
+      let x = Number(prompt("Please fill length of rectangle"));
+      let y = Number(prompt("Please fill width of rectangle"));
+      let rectangle1 = new Rectangle(x, y);
+      let area1 = rectangle1.getArea();
+      let perimeter1 = rectangle1.getPerimeter();
+      document.write("<br>");
+      document.write(
+        "Area is: " + area1 + "<br>" + "perimeter is : " + perimeter1
+      );
+      rectangle1.paintReactangle();
+    </script>
+  </body>
+</html>

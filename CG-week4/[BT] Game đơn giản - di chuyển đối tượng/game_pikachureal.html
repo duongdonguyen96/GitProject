@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Objects</title>
+  </head>
+  <body>
+    <div id="game"></div>
+    <script src="script.js"></script>
+  </body>
+  <script>
+    const SCREEN = {
+      WIDTH: 1500,
+      HEIGHT: 700,
+    };
+    function Hero(image, top, left, size) {
+      this.image = image;
+      this.top = top;
+      this.left = left;
+      this.size = size;
+
+      this.getHeroElement = function () {
+        return (
+          '<img width="' +
+          this.size +
+          '"' +
+          ' height="' +
+          this.size +
+          '"' +
+          ' src="' +
+          this.image +
+          '"' +
+          ' style="top: ' +
+          this.top +
+          "px; left:" +
+          this.left +
+          'px;position:absolute;" />'
+        );
+      };
+
+      this.moveRight = function (left) {
+        this.left += 150;
+        console.log("ok: " + this.left);
+      };
+
+      this.moveDown = function (top) {
+        this.top += 150;
+        console.log("oki: " + this.top);
+      };
+      this.moveLeft = function (left) {
+        this.left -= 150;
+        console.log("okay" + this.left);
+      };
+      this.moveUp = function (top) {
+        this.top -= 150;
+        console.log("oke" + this.top);
+      };
+      this.directionPikachu = function (top, left, size) {
+        if (this.left < SCREEN.WIDTH - this.size && this.top < this.size) {
+          this.moveRight();
+        } else if (
+          this.left >= SCREEN.WIDTH - this.size &&
+          this.top < SCREEN.HEIGHT - this.size
+        ) {
+          this.moveDown();
+        } else if (
+          this.top > SCREEN.HEIGHT - this.size &&
+          this.left > this.size
+        ) {
+          this.moveLeft();
+        } else if (this.left < this.size) {
+          this.moveUp();
+        }
+      };
+    }
+
+    var hero = new Hero("pikachu.png", 20, 30, 150);
+
+    function start() {
+      document.getElementById("game").innerHTML = hero.getHeroElement();
+      setTimeout(start, 100);
+      hero.directionPikachu();
+    }
+
+    start();
+  </script>
+</html>

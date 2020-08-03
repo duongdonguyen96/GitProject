@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="game"></div>
+
+    <script>
+      const sceen = {
+        WIDTH: 1000,
+        HEIGHT: 50,
+      };
+      const DIRECTION = {
+        Right: "right",
+        Left: "left",
+        Up: "Up",
+        Down: "Down",
+        Stop: "stop",
+      };
+      class Hero {
+        speed = 50;
+        constructor(image, top, left, size) {
+          this.image = image;
+          this.top = top;
+          this.left = left;
+          this.size = size;
+          this.direction = DIRECTION.Right;
+        }
+        getHeroElement() {
+          return (
+            '<img width="' +
+            this.size +
+            '"' +
+            ' height="' +
+            this.size +
+            '"' +
+            ' src="' +
+            this.image +
+            '"' +
+            ' style="top: ' +
+            this.top +
+            "px; left:" +
+            this.left +
+            'px;position:absolute;" />'
+          );
+        }
+        speedUp() {
+          this.speed += 1000;
+        }
+        moveRight() {
+          if (hero.left < sceen.WIDTH - hero.size) {
+            this.left += this.speed;
+          } else {
+            this.direction = DIRECTION.Down;
+          }
+        }
+        moveUp() {
+          if (hero.top > hero.size) {
+            this.top -= this.speed;
+          } else {
+            this.direction = DIRECTION.Right;
+          }
+        }
+        moveDown() {
+          if (hero.top < sceen.WIDTH - hero.size) {
+            this.top += this.speed;
+          } else {
+            this.direction = DIRECTION.Left;
+          }
+        }
+        moveLeft() {
+          if (hero.left > hero.size) {
+            this.left -= this.speed;
+          } else {
+            this.direction = DIRECTION.Up;
+          }
+        }
+        move() {
+          switch (this.direction) {
+            case DIRECTION.Up:
+              this.moveUp();
+              break;
+            case DIRECTION.Down:
+              this.moveDown();
+              break;
+            case DIRECTION.Left:
+              this.moveLeft();
+              break;
+            case DIRECTION.Right:
+              this.moveRight();
+              break;
+          }
+        }
+      }
+      let hero = new Hero("minkyung.jpg", 20, 30, 100);
+      function start() {
+        hero.move();
+        document.getElementById("game").innerHTML = hero.getHeroElement();
+        setTimeout(start, 250);
+      }
+      start();
+    </script>
+  </body>
+</html>

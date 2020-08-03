@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Temperature {
+        constructor(doC) {
+          this.doC = doC;
+        }
+        getdoC() {
+          return this.doC;
+        }
+        getConvertToF() {
+          return this.doC * 1.8 + 32;
+        }
+        getConvertToKenvin() {
+          return this.doC + 273.15;
+        }
+        setdoC(doC) {
+          this.doC = doC;
+        }
+      }
+      let x = Number(prompt("nhập độ C cần chuyển"));
+      let doc_One = new Temperature(x);
+      while (doc_One.getdoC() < -273) {
+        x = Number(prompt("nhập độ C cần chuyển"));
+        doc_One.setdoC(x);
+      }
+      alert(doc_One.getConvertToKenvin());
+      alert(doc_One.getConvertToF());
+    </script>
+  </body>
+</html>

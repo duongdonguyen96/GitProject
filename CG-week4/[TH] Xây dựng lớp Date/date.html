@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class MyDate {
+        constructor(_day, _month, _year) {
+          this.day = _day;
+          this.month = _month;
+          this.year = _year;
+        }
+        getDay() {
+          return this.day;
+        }
+        getMonth() {
+          return this.month;
+        }
+        getYear() {
+          return this.year;
+        }
+
+        setDay(day) {
+          this.day = day;
+        }
+        setMonth(month) {
+          this.month = month;
+        }
+        setYear(year) {
+          this.year = year;
+        }
+
+        toString() {
+          return this.getDay() + "/" + this.getMonth() + "/" + this.getYear();
+        }
+      }
+
+      let mydate = new MyDate(24, 1, 1996);
+      let day = mydate.getDay();
+      let month = mydate.getMonth();
+      let year = mydate.getYear();
+
+      mydate.setDay(10);
+      mydate.setMonth(10);
+      mydate.setYear(2010);
+
+      document.write(mydate.toString());
+    </script>
+  </body>
+</html>
