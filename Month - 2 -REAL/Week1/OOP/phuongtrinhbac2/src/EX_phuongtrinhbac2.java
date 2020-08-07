@@ -8,12 +8,6 @@ public class EX_phuongtrinhbac2 {
             try {
                 System.out.println("Enter a :");
                 a = Double.parseDouble(scanner.nextLine());
-
-                if (a > 10) {
-                    System.out.println("ko lon hon 10");
-                } else {
-                    break;
-                }
                 break;
             } catch (Exception e) {
                 System.out.println("Nhap so di ban");
