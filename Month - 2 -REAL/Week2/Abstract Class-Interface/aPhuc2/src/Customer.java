@@ -1,12 +1,10 @@
-import java.util.Scanner;
-
 public class Customer {
     private String name;
     private String address;
     private String phone;
     private String email;
     String gender;
-    public int oder = 0;
+    public int order = 0;
 
     public Customer() {
     }
@@ -17,7 +15,7 @@ public class Customer {
         this.phone = phone;
         this.email = email;
         this.gender = gender;
-        this.oder = oder;
+        this.order = order;
     }
 
     public String getName() {
@@ -62,22 +60,23 @@ public class Customer {
         this.gender = gender;
     }
 
-    public int getOder() {
-        return oder;
+    public int getOrder() {
+        return order;
     }
 
-    public void setOder(int oder) {
+    public void setOrder(int order) {
 
-        this.oder = oder;
+        this.order = order;
     }
 
 
     public void displayInformation() {
         System.out.println("Thong tin khach hang: ");
-        System.out.println("Khach hang: " + this.getName());
+        System.out.println("Khach hang: " + this.name);
         System.out.println("Dia chi: " + this.getAddress());
-        System.out.println("Gioi tinh: " + this.getGender());
         System.out.println("So dien thoai: " + this.getPhone());
-        System.out.println("So don da mua: " + this.getOder());
+//        System.out.println("Email: " + this.getEmail());
+        System.out.println("Gioi tinh: " + this.getGender());
+        System.out.println("So don da mua: " + this.getOrder());
     }
 }

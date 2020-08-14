@@ -4,15 +4,7 @@ import java.util.Scanner;
 public class CustomerManage {
     public static Scanner scanner = new Scanner(System.in);
     public static ArrayList<Customer> customerlist = new ArrayList<>();
-    int oder;
-    public static int amount;
-    public static String name;
-    public static String address;
-    public static String email;
-    public static String phone;
-    public static boolean checkPhone;
-    public static boolean checkPhoneAndEmail;
-    public static String gender;
+
     public static int index;
 
     public static void main(String[] args) {
@@ -24,7 +16,7 @@ public class CustomerManage {
             switch (yourChoice) {
                 case 1:
                     System.out.println("Nhap khach hang: ");
-                    inputInformation1();
+                    inputInformation();
                     break;
                 case 2:
                     findCustomer();
@@ -50,7 +42,7 @@ public class CustomerManage {
 
     public static void findCustomer() {
         System.out.println("Nhap so dien thoai khach hang:");
-        phone = scanner.nextLine();
+        String phone = scanner.nextLine();
         if (checkPhone(phone)) {
             customerlist.get(index).displayInformation();
         } else {
@@ -59,7 +51,7 @@ public class CustomerManage {
     }
 
     public static boolean checkPhone(String paraPhone) {
-        checkPhone = false;
+        boolean checkPhone = false;
         for (int i = 0; i < customerlist.size(); i++) {
             if (customerlist.get(i).getPhone().equals(paraPhone)) {
                 checkPhone = true;
@@ -78,17 +70,16 @@ public class CustomerManage {
             customerlist.get(i).displayInformation();
             System.out.println("=====================");
         }
-
     }
 
     public static void buyGoods() {
         System.out.println("Nhap so dien thoai khach hang");
         String phone = scanner.nextLine();
         System.out.println("So don hang muon mua");
-        amount = Integer.parseInt(scanner.nextLine());
+        int amount = Integer.parseInt(scanner.nextLine());
         System.out.println("Thong tin sau khi mua " + amount + " don hang:");
         if (checkPhone(phone)) {
-            customerlist.get(index).setOder(customerlist.get(index).getOder() + amount);
+            customerlist.get(index).setOrder(customerlist.get(index).getOrder() + amount);
             customerlist.get(index).displayInformation();
         } else {
             System.out.println("Khong ton tai khach hang....Chon menu de thuc hien tiep..");
@@ -100,21 +91,21 @@ public class CustomerManage {
         System.exit(0);
     }
 
-    public static void inputInformation1() {
+    public static void inputInformation() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhap ten:");
-        name = scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Nhap dia chi:");
-        address = scanner.nextLine();
+        String address = scanner.nextLine();
         System.out.println("Nhap email:");
-        email = scanner.nextLine();
+        String email = scanner.nextLine();
         System.out.println("Nhap so dien thoai:");
-        phone = scanner.nextLine();
+        String phone = scanner.nextLine();
         System.out.println("Nhap gioi tinh: ");
-        gender = scanner.nextLine();
-        System.out.println("");
+        String gender = scanner.nextLine();
+//        System.out.println("");
         System.out.println("Nhap khach hang: ");
-        Customer customer = new Customer(name, address, email, phone, gender);
+        Customer customer = new Customer(name, address, phone, email, gender);
 
         if (checkEmailAndPhone(phone, email)) {
             customerlist.add(customer);
@@ -122,21 +113,23 @@ public class CustomerManage {
 
         } else {
             System.out.println(" Tai khoan da ton tai... He thong da update....Chon Menu");
+            customerlist.get(index).setName(name);
         }
     }
 
     public static boolean checkEmailAndPhone(String phone, String email) {
-        checkPhoneAndEmail = true;
+        boolean checkPhoneAndEmail = true;
         for (int i = 0; i < customerlist.size(); i++) {
-            if (phone.equals(customerlist.get(i).getPhone()) && email.equals(customerlist.get(i).getEmail())) {
+            if (phone.equals(customerlist.get(i).getPhone())
+                    && email.equals(customerlist.get(i).getEmail())) {
                 index = i;
                 checkPhoneAndEmail = false;
+                break;
             } else {
                 checkPhoneAndEmail = true;
             }
         }
         return checkPhoneAndEmail;
-
     }
 
     public static void showMenu() {
