@@ -14,10 +14,10 @@ class SimpleCalculatorTest {
     }
 
     @Test
-    void add2And1() {
+    void addNagative2And1() {
         SimpleCalculator simpleCalculator = new SimpleCalculator();
-        int result = simpleCalculator.add(2, 1);
-        assertEquals(3, result);
+        int result = simpleCalculator.add(-2, 1);
+        assertEquals(-1, result);
     }
 
     @Test
