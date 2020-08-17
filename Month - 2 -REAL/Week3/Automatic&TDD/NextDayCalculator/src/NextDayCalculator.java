@@ -1,21 +1,62 @@
 public class NextDayCalculator {
-    public static String NextDayCalculator(int day, int month, int year) {
-        switch (day) {
+    public static String findNextDay(int day, int month, int year) {
+        boolean isLeapYear = isLeapYear(year);
+        switch (month) {
             case 1:
-                if (month < 13 && month > 0)
-                    return day + 1 + "-" + month + "-" + year;
-            case 31:
-                if (month == 12) return day - 30 + "-" + (month - 11) + "-" + (year + 1);
-                return day - 30 + "-" + (month + 1) + "-" + year;
-            case 30:
-                if (month == 4) return day - 29 + "-" + (month + 1) + "-" + (year);
-            case 28:
-                if (month == 2) return day - 27 + "-" + (month + 1) + "-" + (year);
-            case 29:
-                if (month == 2 && year == 2020) return day - 28 + "-" + (month + 1) + "-" + (year);
-
-
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+                if (day < 31) day++;
+                else {
+                    day = 1;
+                    month++;
+                }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                if (day < 30) day++;
+                else {
+                    day = 1;
+                    month++;
+                }
+                break;
+            case 12:
+                if (day < 31) day++;
+                else {
+                    day = 1;
+                    month = 1;
+                    year++;
+                }
+                break;
+            case 2:
+                if (isLeapYear) if (day < 29) day++;
+                else {
+                    day = 1;
+                    month++;
+                }
+                else if (day < 28) day++;
+                else {
+                    day = 1;
+                    month++;
+                }
+                break;
         }
-        return null;
+        return day + "-" + month + "-" + year;
+    }
+
+    private static boolean isLeapYear(int year) {
+        boolean isLeapYear = false;
+        if (year % 4 == 0) if (year % 100 == 0) {
+            if (year % 400 == 0) {
+                isLeapYear = true;
+            }
+        } else {
+            isLeapYear = true;
+        }
+        return isLeapYear;
     }
 }
