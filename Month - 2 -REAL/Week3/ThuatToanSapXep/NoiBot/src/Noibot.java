@@ -5,6 +5,7 @@ public class Noibot {
 
         int[] array = {100, 2, 5, 10, 20, 50, 200, 500};
         System.out.println("Mang ban dau: ");
+        System.out.println(Arrays.toString(array));
         System.out.println("_________________");
         sapXepNoiBot(array);
         System.out.println("Mang da sap xep");
@@ -16,7 +17,7 @@ public class Noibot {
         boolean needNextPass = true;
         for (int i = 1; i < array.length && needNextPass; i++) {
             needNextPass = false;
-            for (int j = 0; j < array.length - 1; j++) {
+            for (int j = 0; j < array.length - i; j++) {
                 if (array[j] > array[j + 1]) {
                     int temp = array[j];
                     array[j] = array[j + 1];
