@@ -1,5 +1,5 @@
 id,name,producer,price,otherdescription
-1,nguyen,hue,1,1
-2,long,hue,2,2
-3,2,4,5,5
 8,phuc,s,s,s
+5,note,VN,100,ko
+7,Laptop,1,1,1
+4,Nguyen,Hue,hue,hue
