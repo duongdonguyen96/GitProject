@@ -1,0 +1,101 @@
+body {
+    margin: 0px auto;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: #f9f9f9;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#container #header {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+}
+
+#container #header .before_header {
+    padding-left: 2vw;
+}
+
+#container #header .before_header i {
+    font-size: 2em;
+    text-align: center;
+    padding: 2vh;
+}
+
+#container #header .before_header img {
+    width: 2vw;
+    height: 5vh;
+    margin-bottom: -1vh;
+}
+
+#container #header .before_header input {
+    width: 33.26vw;
+}
+
+#container #header .middle_header {
+    margin-left: 20vw;
+}
+
+#container #header .middle_header input {
+    width: 30vw;
+    height: 3vh;
+}
+
+#container #header .middle_header button {
+    height: 3.5vh;
+}
+
+#container #main {
+    margin-top: 3vh;
+    margin-left: 5vw;
+    background-color: #f9f9f9;
+    width: 95vw;
+    height: 77vh;
+    display: flex;
+    position: relative;
+}
+
+#container #main #main_left {
+    width: 65vw;
+}
+
+#container #main #main_left #content iframe {
+    padding: 3vh;
+    width: 60vw;
+    height: 70vh;
+}
+
+#container #main #main_right {
+    width: 34vw;
+    margin-left: 1vw;
+    padding: 3vh;
+}
+
+#container #main #main_right iframe {
+    margin-right: 2%;
+}
+
+#container #main #main_right ul li {
+    display: flex;
+    margin-bottom: 5%;
+}
+
+#container #footer {
+    width: 100%;
+    height: 10vh;
+}
+
+#container #footer marquee {
+    font-size: 1.5em;
+    text-align: center;
+    color: red;
+}

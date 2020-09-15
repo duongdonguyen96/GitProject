@@ -1,0 +1,13 @@
+#main {
+    margin: 0 auto;
+    border: 5px solid;
+    background: hotpink;
+    padding: 10px;
+    border-color: chartreuse aqua blue blueviolet;
+    border-radius: 5px;
+}
+
+#main p {
+    color: skyblue;
+    text-align: center;
+}
