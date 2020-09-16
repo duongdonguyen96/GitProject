@@ -1,0 +1,54 @@
+body {
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    background-color: #3e503c;
+}
+
+
+/* Reponsive */
+
+
+/* Tất cả các màn hình có độ phân giải thấp nhất là 1001px */
+
+@media all and (min-width: 1001px) {
+    body {
+        background-color: #3e503c;
+    }
+}
+
+
+/* Màn hình có độ phân giải tối đa 1000px */
+
+@media screen and (max-width: 1000px) {
+    body {
+        background-color: #7f886a;
+    }
+}
+
+
+/* Màn hình có độ phân giải tối đa 750px */
+
+@media screen and (max-width: 750px) {
+    body {
+        background-color: #f3ecdb;
+    }
+}
+
+
+/* Màn hình có độ phân giải tối đa 540px */
+
+@media screen and (max-width: 540px) {
+    body {
+        background-color: #ff6f3d;
+    }
+}
+
+
+/* Màn hình có độ phân giải tối đa 380px */
+
+@media screen and (max-width: 380px) {
+    body {
+        background-color: #3e503c;
+    }
+}
