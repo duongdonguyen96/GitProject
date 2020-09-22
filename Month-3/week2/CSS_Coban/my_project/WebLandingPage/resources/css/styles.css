@@ -1,0 +1,291 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #ffffff;
+    color: #5a5a5a;
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+/* ----------------REUSABLE COMPONENT------------- */
+
+.btn {
+    text-decoration: none;
+    color: white;
+    background-color: #e67e22;
+    padding: 15px 30px;
+    border-radius: 20px;
+    margin: 0 5px;
+    width: 190px;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.bth:hover,
+.btn:hover {
+    background-color: #d35400;
+}
+
+.clearfix::after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 300%;
+    font-weight: 400;
+    word-spacing: 5px;
+    color: white;
+    line-height: 135%;
+    margin-bottom: 50px;
+}
+
+h2 {
+    color: #e67e22;
+    font-size: 180%;
+    font-weight: 400;
+    text-align: center;
+}
+
+h3 {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: #265077;
+    color: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+h2::after {
+    content: " ";
+    display: block;
+    width: 150px;
+    height: 2px;
+    background-color: rgb(245, 214, 158);
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+.p-long {
+    text-align: center;
+    columns: #265077;
+    font-size: 22px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 70%;
+    margin-left: 15%;
+}
+
+section {
+    padding: 50px;
+}
+
+.small-icon {
+    color: green;
+    margin-right: 10px;
+}
+
+
+/* -------------HEADER--------------------- */
+
+.logo {
+    width: 350px;
+    float: left;
+    margin-top: -50px;
+    margin-left: 70px;
+}
+
+.main-nav {
+    float: right;
+    list-style: none;
+    margin-right: 50px;
+    margin-top: 55px;
+}
+
+.main-nav li a {
+    text-decoration: none;
+    color: white;
+    font-size: 110%;
+    font-weight: 700;
+    transition: border-bottom 0.5s;
+    padding: 3px 0;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+    border-bottom: 2px solid #cccccc;
+}
+
+.main-nav li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+header {
+    background-image: linear-gradient( 45deg, rgba(2, 33, 64, 0.8) 55%, rgba(45, 95, 93, 0.85)), url(../img/background4.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.heading-main-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -55%);
+    width: 1140px;
+}
+
+
+/* _________________Section________________ */
+
+.about-picture {
+    position: relative;
+    margin-top: 50px;
+}
+
+.about-picture img {
+    width: 90%;
+    border-radius: 20px;
+    border: 4px solid #a7cdf0;
+    box-shadow: 0px 5px 10px 2px #c2e1fd;
+}
+
+.picture-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-65%, 100%);
+    color: #c2e1fd;
+    opacity: 0;
+}
+
+.about-picture:hover .picture-title {
+    transform: translate(-65%, -50%);
+    opacity: 1;
+    transition: all 0.7s;
+}
+
+.about-picture img:hover {
+    filter: blur(2px) brightness(55%);
+    transition: all 0.7s;
+}
+
+
+/* ---------------products section------------- */
+
+.products-section {
+    background-color: #f4f4f4;
+}
+
+.products-section h2 {
+    margin-bottom: 50px;
+}
+
+.products-box {
+    background-color: #eeefff;
+    width: 90%;
+    height: 380px;
+    box-shadow: 3px 5px 10px #e0e0e0;
+}
+
+.products-price {
+    color: #265077;
+    font-size: 250%;
+    font-weight: 300;
+    text-align: center;
+}
+
+.products-price span {
+    font-size: 80%;
+}
+
+.products-box ul li {
+    margin-left: 20%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    list-style: none;
+}
+
+.products-box .btn {
+    margin-left: 20%;
+}
+
+
+/* ----------------sponsors-section--------------- */
+
+.sponsors-section .row {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.image_title {
+    color: green;
+    bottom: 0;
+    font-weight: 700;
+}
+
+.image_club {
+    width: 50%;
+}
+
+.image_club:hover {
+    transform: scale(1.1);
+    transform: rotate(360deg);
+    transition: 0.3s;
+}
+
+
+/* ------------ Footer------------------- */
+
+.footer {
+    background-color: #265077;
+    text-align: center;
+    height: 180px;
+    line-height: 60px;
+}
+
+.footer p {
+    color: white;
+}
+
+.footer__text::after {
+    content: " ";
+    display: block;
+    width: 900px;
+    height: 2px;
+    background-color: rgb(245, 214, 158);
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+.footer__text1 {
+    font-weight: 200;
+}
