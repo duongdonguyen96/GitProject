@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="BTLT_Miss:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>BTLT_Miss</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="BTLT_Miss-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="BTLT_Miss:war exploded" />
+    </root>
+  </artifact>
+</component>
