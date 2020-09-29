@@ -49,10 +49,10 @@ public class MissServiceImpl implements MissService {
 
     }
     @Override
-    public List<Miss> checkStatus() {
+    public List<Miss> checkStatusList() {
         List<Miss> missArrayList=new ArrayList<>();
         for (Miss miss:missList.values()){
-//            if (miss.isDuyet())
+            if (miss.isCheckStatus())
                 missArrayList.add(miss);
         }
         return missArrayList;

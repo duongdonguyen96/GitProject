@@ -16,5 +16,5 @@ public interface MissService {
 
     void remove(int id);
 
-    List<Miss> checkStatus();
+    List<Miss> checkStatusList();
 }

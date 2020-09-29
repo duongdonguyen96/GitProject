@@ -137,7 +137,9 @@ public class MissServlet extends HttpServlet {
         if (miss == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            this.missService.remove(id);
+            if (!miss.isCheckStatus()) {
+                this.missService.remove(id);
+            }
             try {
                 response.sendRedirect("/misses");
             } catch (IOException e) {
@@ -164,10 +166,37 @@ public class MissServlet extends HttpServlet {
             case "view":
                 showViewForm(request, response);
                 break;
+            case "approved":
+                showMissApproved(request, response);
+                break;
+            case "approvedlist":
+                showApprovedList(request, response);
+                break;
             default:
                 listMisses(request, response);
                 break;
         }
+    }
+
+    private void showApprovedList(HttpServletRequest request, HttpServletResponse response) {
+        List<Miss> missList = missService.checkStatusList();
+        RequestDispatcher dispatcher;
+
+        request.setAttribute("miss", missList);
+        dispatcher = request.getRequestDispatcher("miss/approved.jsp");
+
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showMissApproved(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Miss miss = missService.findById(id);
+        miss.setCheckStatus(!miss.isCheckStatus());
+        listMisses(request, response);
     }
 
     private void showViewForm(HttpServletRequest request, HttpServletResponse response) {
