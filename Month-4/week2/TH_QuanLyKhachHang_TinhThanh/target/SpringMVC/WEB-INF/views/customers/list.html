@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>Customer List</title>
+    <style>
+        table {
+            border: 1px solid #000;
+        }
+
+        th, td {
+            border: 1px dotted #555;
+        }
+    </style>
+</head>
+<body>
+There are <span th:text="${customers.size()}"></span> customer(s).
+<table>
+    <caption>Customers List</caption>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Province</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${customers}">
+        <td th:text="${customer.id}"></td>
+        <td>
+            <a th:href="@{/customers/{id}(id=${customer.id})}" th:text="${customer.firstName}"></a>
+        </td>
+        <td th:text="${customer.lastName}"></td>
+        <td>
+            <a th:href="@{/view-province/{id}(id=${customer.province.id})}" th:text="${customer.province.name}"></a>
+        </td>
+        <td>
+            <a th:href="@{/customers/delete/{id}(id=${customer.id})}">Delete</a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/customers/create}">Create Customers</a>
+</body>
+</html>
