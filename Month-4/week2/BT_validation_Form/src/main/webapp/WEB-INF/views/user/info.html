@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Blogs</title>
+</head>
+<body>
+<h1>Edit Blogs</h1>
+<p>
+    <a href="/user">Blogs list</a>
+</p>
+<!--<th:block th:if="${message}">-->
+<!--    <p th:text="${message}"></p>-->
+<!--</th:block>-->
+<form action="/user/edit" method="post" th:object="${user}">
+    <input type="hidden" name="id" th:value="${user.id}">
+    <!--    <input type="text" name="firstName" th:value="${customer.firstName}">-->
+    <table>
+        <tr>
+            <td>First name:</td>
+            <td><input type="text" th:field="${user.firstName}" name="title"/></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td><input type="text" th:field="${user.lastName}" name="content"/></td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td><input type="text" th:field="${user.age}" name="title"/></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" th:field="${user.email}" name="content"/></td>
+        </tr>
+
+        <tr>
+            <td><input type="submit" value="Update Blogs"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

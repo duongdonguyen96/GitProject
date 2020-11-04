@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>User Information</title>
+</head>
+<body>
+<form action="/user/save" method="post" th:object="${user}">
+    <fieldset>
+        <legend>User Information</legend>
+        <input type="hidden" th:field="*{id}">
+        <table>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" th:field="*{firstName}" required th:maxlength="45" th:minlength="5"></td>
+                <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" th:field="*{lastName}"></td>
+                <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</td>
+
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td><input type="number" th:field="*{age}" th:min="18"></td>
+                <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>
+
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" th:field="*{email}" required></td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</td>
+
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+<a href="/user">Back to list</a>.
+</body>
+</html>
