@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>List Customers</title>
+    <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+
+
+    <!--    <script src="views/customers/customer.js"></script>-->
+</head>
+<body>
+<div class="container" id="container">
+    <h1>All Customer hihihi</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Create</button>
+    <table id="dataTable" class="table table-dark table-hover" border="1px" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="tableCustomer">
+
+        </tbody>
+    </table>
+
+</div>
+<!-- Modal Create -->
+<div class="modal" id="modalCreate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Create Customer</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="createForm">
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="name" class="form-control" required >
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Age</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="age" class="form-control" required >
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-9">
+                            <input th:type="email" id="email" class="form-control" required >
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Phone</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="phone" class="form-control" required >
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-9">
+                            <input type="hidden" id="id" class="form-control" required>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-warning" onclick="return  customers.create()"
+                               value="Create">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Model Update-->
+<div class="modal" id="modalUpdate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit customer</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="updateForm">
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="nameUpdate" class="form-control" required>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Age</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="ageUpdate" class="form-control" required>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="emailUpdate" class="form-control" required>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Phone</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="phoneUpdate" class="form-control" required>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-9">
+                            <input type="hidden" id="idUpdate" class="form-control" required>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-warning" onclick="return  customers.update()"
+                               value="Update">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Datatable JS-->
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+<script type="text/javascript">
+    var customers = {} || customers;
+    customers.drawTable = function () {
+        $.ajax({
+            url: "http://localhost:8080/api/customer/",
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                $('#tableCustomer').empty();
+                $.each(data, function (i, v) {
+                    $('#tableCustomer').append(
+                        "<tr>" +
+                        "<td>" + v.id + "</td>" +
+                        "<td>" + v.name + "</td>" +
+                        "<td>" + v.age + "</td>" +
+                        "<td>" + v.email + "</td>" +
+                        "<td>" + v.phone + "</td>" +
+                        "<td>" +
+                        "<a class='ml-3 btn btn-warning' href='#' onclick='customers.get(" + v.id + ")' data-toggle=\"modal\" data-target=\"#modalUpdate\">Edit</a>" +
+                        "<a class='ml-3 btn btn-danger' href='#' onclick='customers.remove(" + v.id + ")'>Delete</a>" +
+                        "</td>" +
+                        "</tr>"
+                    );
+                });
+                $('#dataTable').DataTable();
+            }
+        });
+    };
+
+    customers.remove = function (id) {
+
+        $.ajax({
+            url: "http://localhost:8080/api/customer/" + id,
+            method: "DELETE", //"POST"
+            dataType: 'json',
+            success: function (data) {
+                customers.drawTable();
+                toastr.info('Customer has been deleted successfully', 'INFORMATION:')
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        customers.drawTable();
+    });
+    customers.create = function () {
+        // customers.reset();
+        if ($('#createForm').valid()) {
+            var customer = {};
+            customer.name = $('#name').val();
+            customer.age = $('#age').val();
+            customer.email = $('#email').val();
+            customer.phone = $('#phone').val();
+            $.ajax({
+                url: "http://localhost:8080/api/customer/",
+                method: "POST", //"POST"
+                dataType: 'json',
+                contentType: "application/json",
+                data: JSON.stringify(customer),
+                success: function (data) {
+                    customers.drawTable();
+                    toastr.success('Customer has been Created successfully', 'INFORMATION:')
+                    // alert("Customer has been Created successfully");
+                    // customers.drawTable();
+
+                }
+            })
+        }
+        return false;
+    }
+
+    customers.get = function (id) {
+        $.ajax({
+            url: "http://localhost:8080/api/customer/" + id,
+            method: "GET",
+            dateType: "json",
+            success: function (data) {
+                $('#nameUpdate').val(data.name);
+                $('#ageUpdate').val(data.age);
+                $('#emailUpdate').val(data.email);
+                $('#phoneUpdate').val(data.phone);
+                $('#idUpdate').val(data.id);
+            }
+        })
+
+
+    }
+
+    customers.update = function (id) {
+        var customer = {};
+        customer.name = $('#nameUpdate').val();
+        customer.age = $('#ageUpdate').val();
+        customer.email = $('#emailUpdate').val();
+        customer.phone = $('#phoneUpdate').val();
+        customer.id = $('#idUpdate').val();
+        $.ajax({
+            url: "http://localhost:8080/api/customer/",
+            method: "PUT", //"POST"
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(customer),
+            success: function (data) {
+                toastr.success('Customer has been updated successfully', 'INFORMATION:')
+                customers.drawTable();
+            }
+        });
+        return false;
+    }
+
+    customers.reset = function () {
+        $('#producer').val('');
+        $('#model').val('');
+        $('#price').val('');
+    }
+
+</script>
+</body>
+</html>
