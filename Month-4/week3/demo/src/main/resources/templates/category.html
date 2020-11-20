@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>List categories</title>
+    <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+
+
+    <!--    <script src="views/categories/category.js"></script>-->
+</head>
+<body>
+<div class="container" id="container">
+    <h1>All category</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Create</button>
+    <table id="dataTable" class="table table-dark table-hover" border="1px" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="tableCategory">
+        </tbody>
+    </table>
+
+</div>
+<!-- Modal Create -->
+<div class="modal" id="modalCreate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Create category</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="createForm">
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="name" name="name" class="form-control" required>
+
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-9">
+                            <input type="hidden" id="id" class="form-control">
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-warning" onclick="return  categories.create()"
+                               value="Create">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Model Update-->
+<div class="modal" id="modalUpdate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Category</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="updateForm">
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="nameUpdate" class="form-control" required>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-9">
+                            <input type="hidden" id="idUpdate" class="form-control" required>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-warning" onclick="return  categories.update()"
+                               value="Update">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Datatable JS-->
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+        integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+        crossorigin="anonymous"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.1/bootbox.min.js"></script>
+
+
+<script type="text/javascript">
+    var categories = {} || categories;
+    categories.drawTable = function () {
+        $.ajax({
+            url: "http://localhost:8080/api/category/",
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                $('#tableCategory').empty();
+                $.each(data, function (i, v) {
+                    $('#tableCategory').append(
+                        "<tr>" +
+                        "<td>" + v.id + "</td>" +
+                        "<td>" + v.name + "</td>" +
+                        "<td>" +
+                        "<a class='ml-3 btn btn-warning' href='#' onclick='categories.get(" + v.id + ")' data-toggle=\"modal\" data-target=\"#modalUpdate\">Edit</a>" +
+                        "<a class='ml-3 btn btn-danger' href='#' onclick='categories.remove(" + v.id + ")'>Delete</a>" +
+                        "</td>" +
+                        "</tr>"
+                    );
+                });
+                $('#dataTable').DataTable();
+            }
+        });
+    };
+
+    categories.remove = function (id) {
+        bootbox.confirm({
+            message: "Do you want to delete this category",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "http://localhost:8080/api/category/" + id,
+                        method: "DELETE", //"POST"
+                        dataType: 'json',
+                        success: function (data) {
+                            categories.drawTable();
+                            toastr.info('category has been deleted successfully', 'INFORMATION:')
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        categories.drawTable();
+
+    });
+
+
+    categories.create = function () {
+        if ($('#createForm').valid()) {
+            var category = {};
+            category.name = $('#name').val();
+            category.content = $('#content').val();
+            $.ajax({
+                url: "http://localhost:8080/api/category/",
+                method: "POST", //"POST"
+                dataType: 'json',
+                contentType: "application/json",
+                data: JSON.stringify(category),
+                success: function (data) {
+                    categories.drawTable();
+                    toastr.success('category has been Created successfully', 'INFORMATION:');
+                }
+            })
+            categories.reset();
+        }
+        return false;
+    }
+
+    categories.get = function (id) {
+        $.ajax({
+            url: "http://localhost:8080/api/category/" + id,
+            method: "GET",
+            dateType: "json",
+            success: function (data) {
+                $('#nameUpdate').val(data.name);
+                $('#contentUpdate').val(data.content);
+                $('#idUpdate').val(data.id);
+            }
+        })
+
+
+    }
+
+    categories.update = function () {
+        var category = {};
+        category.name = $('#nameUpdate').val();
+        category.id = $('#idUpdate').val();
+        $.ajax({
+            url: "http://localhost:8080/api/category/",
+            method: "PUT", //"POST"
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(category),
+            success: function (data) {
+                console.log(data);
+                toastr.success('category has been updated successfully', 'INFORMATION:')
+                categories.drawTable();
+            }
+        });
+        return false;
+    }
+
+    categories.reset = function () {
+        $('#name').val('');
+    }
+
+
+    //validation Jquery
+
+    $().ready(function () {
+
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>List blogs</title>
+    <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+
+
+    <!--    <script src="views/blogs/blog.js"></script>-->
+</head>
+<body>
+<div class="container" id="container">
+    <h1>All Blog</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Create</button>
+    <table id="dataTable" class="table table-dark table-hover" border="1px" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Content</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="tableCustomer">
+
+        </tbody>
+    </table>
+
+</div>
+<!-- Modal Create -->
+<div class="modal" id="modalCreate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Create Blog</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="createForm">
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="name" class="form-control"  required th:maxlength="45">
+                            <p style="color: red;display: none" class="ui-state-error-text"></p>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Content</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="content"   class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label for="category">Category:</label>
+                        </div>
+                        <div class="col-9">
+                            <select class="form-control" id="category" name="cagegory">
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-9">
+                            <input type="hidden" id="id" class="form-control" required>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-warning" onclick="return  blogs.create()"
+                               value="Create">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Model Update-->
+<div class="modal" id="modalUpdate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Blog</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="updateForm">
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="nameUpdate" class="form-control" required>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Content</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="contentUpdate" name="cagegoryUpdate" class="form-control" required>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label for="category">Category:</label>
+                        </div>
+                        <div class="col-9">
+                            <select class="form-control" id="categoryUpdate"></select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-9">
+                            <input type="hidden" id="idUpdate" class="form-control" required>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-warning" onclick="return  blogs.update()"
+                               value="Update">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Datatable JS-->
+
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+        integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.1/bootbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+
+
+<script type="text/javascript">
+    var blogs = {} || blogs;
+    var categories = {} || categories;
+    var categoryData = [];
+    blogs.drawTable = function () {
+        $.ajax({
+            url: "http://localhost:8080/api/blog/",
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                $('#tableCustomer').empty();
+                $.each(data, function (i, v) {
+                    $('#tableCustomer').append(
+                        "<tr>" +
+                        "<td>" + v.id + "</td>" +
+                        "<td>" + v.name + "</td>" +
+                        "<td>" + v.content + "</td>" +
+                        "<td>" + v.category.name + "</td>" +
+                        "<td>" +
+                        "<a class='ml-3 btn btn-warning' href='#' onclick='blogs.get(" + v.id + ")' data-toggle=\"modal\" data-target=\"#modalUpdate\">Edit</a>" +
+                        "<a class='ml-3 btn btn-danger' href='#' onclick='blogs.remove(" + v.id + ")'>Delete</a>" +
+                        "</td>" +
+                        "</tr>"
+                    );
+                });
+                $('#dataTable').DataTable();
+            }
+        });
+
+    };
+
+    blogs.remove = function (id) {
+        bootbox.confirm({
+            message: "Do you want to delete this blog",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "http://localhost:8080/api/blog/" + id,
+                        method: "DELETE", //"POST"
+                        dataType: 'json',
+                        success: function (data) {
+                            blogs.drawTable();
+                            toastr.info('blog has been deleted successfully', 'INFORMATION:')
+                        }
+                    });
+                }
+            }
+        });
+
+
+    }
+
+
+    blogs.create = function () {
+        if ($('#createForm').valid()) {
+            var blog = {};
+            blog.name = $('#name').val();
+            blog.content = $('#content').val();
+            blog.category = categories.findById(parseInt($('#category').val()));
+            $.ajax({
+                url: "http://localhost:8080/api/blog/",
+                method: "POST", //"POST"
+                dataType: 'json',
+                contentType: "application/json",
+                data: JSON.stringify(blog),
+                success: function (data) {
+                    blogs.drawTable();
+                    toastr.success('Blog has been Created successfully', 'INFORMATION:');
+                }
+            })
+        }
+        blogs.reset();
+        return false;
+    }
+
+    blogs.get = function (id) {
+        $.ajax({
+            url: "http://localhost:8080/api/blog/" + id,
+            method: "GET",
+            dateType: "json",
+            success: function (data) {
+                $('#nameUpdate').val(data.name);
+                $('#contentUpdate').val(data.content);
+                $('#idUpdate').val(data.id);
+                $('#categoryUpdate').val(data.category.id);
+            }
+        })
+    }
+
+    blogs.update = function (id) {
+        var blog = {};
+
+        blog.name = $('#nameUpdate').val();
+        blog.content = $('#contentUpdate').val();
+        blog.id = $('#idUpdate').val();
+        blog.category = categories.findById(parseInt($('#categoryUpdate').val()));
+
+        $.ajax({
+            url: "http://localhost:8080/api/blog/",
+            method: "PUT", //"POST"
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(blog),
+            success: function (data) {
+                console.log(data);
+                toastr.success('blog has been updated successfully', 'INFORMATION:')
+                blogs.drawTable();
+            }
+        });
+        return false;
+    }
+
+    categories.lisCategories = function () {
+        $.ajax({
+            url: "http://localhost:8080/api/category/",
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                categoryData = data;
+                $.each(data, function (i, v) {
+                    $('#category').append(
+                        "<option value='" + v.id + "'>" + v.name + "</option>"
+                    );
+                });
+
+                $.each(data, function (i, v) {
+                    $('#categoryUpdate').append(
+                        "<option value='" + v.id + "'>" + v.name + "</option>"
+                    );
+                });
+            }
+        });
+    }
+    categories.findById = function (id) {
+        for (let i = 0; i < categoryData.length; i++) {
+            if (id === categoryData[i].id) {
+                return categoryData[i];
+            }
+        }
+        return null;
+    }
+    blogs.reset = function () {
+        $('#name').val('');
+        $('#content').val('');
+    }
+
+
+    $(document).ready(function () {
+        blogs.drawTable();
+        categories.lisCategories();
+        $('#createForm').validate({
+            rules: {
+                name: {
+                    required: true,
+                    minLength: 5,
+                    maxLength: 45,
+                },
+                content: {
+                    required: true,
+                    minLength: 5,
+                }
+            },
+            message: {
+                name: {
+                    required: 'Tên không được trống',
+                    minLength: 'Tên nhỏ nhất 5 ký tự',
+                    maxLength: 'Tên dài nhất 45 ký tự'
+                },
+                content: {
+                    required: 'Nội dung không được trống',
+                    minLength: 'Độ dài nhất là 5'
+                }
+            },
+
+        });
+    });
+</script>
+</body>
+</html>
