@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>List telivisions</title>
+    <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+            integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+
+    <!--    <script src="views/telivisions/blog.js"></script>-->
+</head>
+<body>
+<div class="container" id="container">
+    <h1>All Telivision</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Create</button>
+    <table id="dataTable" class="table table-dark table-hover" border="1px" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Producer</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="tableTV">
+
+        </tbody>
+    </table>
+
+</div>
+<!-- Modal Create -->
+<div class="modal" id="modalCreate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Create Telivision</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="createForm">
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="name" name="name" class="form-control" required th:maxlength="45">
+                            <p style="color: red;display: none" class="ui-state-error-text"></p>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Price</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="number" id="price" name="price" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Description</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="description" name="description" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label for="producer">Producer</label>
+                        </div>
+                        <div class="col-9">
+                            <select class="form-control" id="producer" name="producer">
+                                <option value="samsung">SamSung</option>
+                                <option value="sony">Sony</option>
+                                <option value="lg">LG</option>
+                                <option value="toshiba">Toshiba</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-9">
+                            <input type="hidden" id="id" class="form-control" required>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-warning" onclick="return  telivisions.create()"
+                               value="Create">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Model Update-->
+<div class="modal" id="modalUpdate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Telivision</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="updateForm">
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="nameUpdate" name="nameUpdate" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Price</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="number" id="priceUpdate" name="priceUpdate" class="form-control" required>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label>Description</label>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" id="descriptionUpdate" name="priceUpdate" class="form-control" required>
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-3">
+                            <label for="producerUpdate">Producer</label>
+                        </div>
+                        <div class="col-9">
+                            <select class="form-control" id="producerUpdate" name="producerUpdate">
+                                <option value="samsung">SamSung</option>
+                                <option value="sony">Sony</option>
+                                <option value="lg">LG</option>
+                                <option value="toshiba">Toshiba</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-9">
+                            <input type="hidden" id="idUpdate" class="form-control" required>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-warning" onclick="return  telivisions.update()"
+                               value="Update">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Datatable JS-->
+
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
+
+<!--<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"-->
+<!--        integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.1/bootbox.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>-->
+
+
+<script type="text/javascript">
+    var telivisions = {} || telivisions;
+    telivisions.drawTable = function () {
+        $.ajax({
+            url: "http://localhost:8080/api/tv/",
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                $('#tableTV').empty();
+                $.each(data, function (i, v) {
+                    $('#tableTV').append(
+                        "<tr>" +
+                        "<td>" + v.id + "</td>" +
+                        "<td>" + v.name + "</td>" +
+                        "<td>" + v.price + "</td>" +
+                        "<td>" + v.producer + "</td>" +
+                        "<td>" + v.description + "</td>" +
+                        "<td>" +
+                        "<a class='ml-3 btn btn-warning' href='#' onclick='telivisions.get(" + v.id + ")' data-toggle=\"modal\" data-target=\"#modalUpdate\">Edit</a>" +
+                        "<a class='ml-3 btn btn-danger' href='#' onclick='telivisions.remove(" + v.id + ")'>Delete</a>" +
+                        "</td>" +
+                        "</tr>"
+                    );
+                });
+                $('#dataTable').DataTable();
+            }
+        });
+
+    };
+
+    telivisions.remove = function (id) {
+        bootbox.confirm({
+            message: "Do you want to delete this Telivison",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "http://localhost:8080/api/tv/" + id,
+                        method: "DELETE", //"POST"
+                        dataType: 'json',
+                        success: function (data) {
+                            telivisions.drawTable();
+                            toastr.info('Telivison has been deleted successfully', 'INFORMATION:')
+                        }
+                    });
+                }
+            }
+        });
+
+
+    }
+
+
+    telivisions.create = function () {
+        if ($('#createForm').valid()) {
+            var tv = {};
+            tv.name = $('#name').val();
+            tv.price = $('#price').val();
+            tv.producer = $('#producer').val();
+            tv.description = $('#description').val();
+
+            $.ajax({
+                url: "http://localhost:8080/api/tv/",
+                method: "POST", //"POST"
+                dataType: 'json',
+                contentType: "application/json",
+                data: JSON.stringify(tv),
+                success: function (data) {
+                    telivisions.drawTable();
+                    toastr.success('Telivison has been Created successfully', 'INFORMATION:');
+                }
+            })
+        }
+        telivisions.reset();
+        return false;
+    }
+
+    telivisions.get = function (id) {
+        $.ajax({
+            url: "http://localhost:8080/api/tv/" + id,
+            method: "GET",
+            dateType: "json",
+            success: function (data) {
+                $('#nameUpdate').val(data.name);
+                $('#priceUpdate').val(data.price);
+                $('#producerUpdate').val(data.producer);
+                $('#descriptionUpdate').val(data.description);
+                $('#idUpdate').val(data.id);
+            }
+        })
+    }
+
+    telivisions.update = function (id) {
+        var tv = {};
+        tv.name = $('#nameUpdate').val();
+        tv.price = $('#priceUpdate').val();
+        tv.producer = $('#producerUpdate').val();
+        tv.description = $('#descriptionUpdate').val();
+        tv.id = $('#idUpdate').val();
+
+        $.ajax({
+            url: "http://localhost:8080/api/tv/",
+            method: "PUT", //"POST"
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(tv),
+            success: function (data) {
+                console.log(data);
+                telivisions.drawTable();
+                toastr.success('Telivison has been updated successfully', 'INFORMATION:')
+
+            }
+        });
+        return false;
+    }
+
+
+    telivisions.reset = function () {
+        $('#name').val('');
+        $('#price').val('');
+        $('#description').val('');
+        $('#producer').val(0);
+    }
+
+    $(document).ready(function () {
+        telivisions.drawTable();
+        $('#createForm').validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 45,
+                },
+                price: {
+                    required: true,
+
+                },
+                description: {
+                    required: true,
+                    minlength: 5,
+                },
+                producer: {
+                    required: true,
+                }
+            },
+            messages: {
+                name: {
+                    required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                    minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
+                    maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
+                },
+                description: {
+                    required: 'Mô tả không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                    minlength: 'Độ nhỏ nhất là 5'
+                },
+                price: {
+                    required: 'Giá không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                },
+                producer: {
+                    required: "Nhà sản xuất không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                }
+            }
+        });
+
+
+        $('#updateForm').validate({
+            rules: {
+                nameUpdate: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 45,
+                },
+                priceUpdate: {
+                    required: true,
+
+                },
+                descriptionUpdate: {
+                    required: true,
+                    minlength: 5,
+                },
+                producerUpdate: {
+                    required: true,
+                }
+            },
+            messages: {
+                nameUpdate: {
+                    required: 'Tên không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                    minlength: 'Tên có ít nhất 5 ký tự a Phúc ơi',
+                    maxlength: 'Tên có nhiều nhất 45 ký tự a Phúc ơi'
+                },
+                descriptionUpdate: {
+                    required: 'Mô tả không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                    minlength: 'Độ nhỏ nhất là 5'
+                },
+                priceUpdate: {
+                    required: 'Giá không được bỏ trống nghe a Phúc..Test cẩn thận đi anh',
+                },
+                producerUpdate: {
+                    required: "Nhà sản xuất không được bỏ trống nghe a Phúc..Test cẩn thận đi anh",
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
